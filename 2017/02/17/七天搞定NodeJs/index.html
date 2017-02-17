@@ -9,22 +9,19 @@
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[七天搞定nodejs] (http://nqdeng.github.io/7-days-nodejs/#3.1)-- 笔记##模块
-
-module通过module对象可以访问到当前模块的一些相关信息，但最多的用途是替换当前模块的导出对象。例如模块导出对象默认是一个普通对象，如果想改成一个函数的话，可以使用以下方式。123module.exports = function () &amp;#123;">
+  <meta name="description" content="[七天搞定nodejs] (http://nqdeng.github.io/7-days-nodejs/#3.1)-- 笔记模块
+module通过module对象可以访问到当前模块的一些相关信息，但最多的用途是替换当前模块的导出对象。例如模块导出对象默认是一个普通对象，如果想改成一个函数的话，可以使用以下方式。123module.exports = function () &amp;#123;    co">
 <meta property="og:type" content="article">
 <meta property="og:title" content="七天搞定nodejs -- 笔记">
 <meta property="og:url" content="https://jiyuan12354.github.io/2017/02/17/七天搞定NodeJs/index.html">
 <meta property="og:site_name" content="千真教主的主页">
-<meta property="og:description" content="[七天搞定nodejs] (http://nqdeng.github.io/7-days-nodejs/#3.1)-- 笔记##模块
-
-module通过module对象可以访问到当前模块的一些相关信息，但最多的用途是替换当前模块的导出对象。例如模块导出对象默认是一个普通对象，如果想改成一个函数的话，可以使用以下方式。123module.exports = function () &amp;#123;">
-<meta property="og:updated_time" content="2017-02-17T07:46:03.400Z">
+<meta property="og:description" content="[七天搞定nodejs] (http://nqdeng.github.io/7-days-nodejs/#3.1)-- 笔记模块
+module通过module对象可以访问到当前模块的一些相关信息，但最多的用途是替换当前模块的导出对象。例如模块导出对象默认是一个普通对象，如果想改成一个函数的话，可以使用以下方式。123module.exports = function () &amp;#123;    co">
+<meta property="og:updated_time" content="2017-02-17T07:49:24.277Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="七天搞定nodejs -- 笔记">
-<meta name="twitter:description" content="[七天搞定nodejs] (http://nqdeng.github.io/7-days-nodejs/#3.1)-- 笔记##模块
-
-module通过module对象可以访问到当前模块的一些相关信息，但最多的用途是替换当前模块的导出对象。例如模块导出对象默认是一个普通对象，如果想改成一个函数的话，可以使用以下方式。123module.exports = function () &amp;#123;">
+<meta name="twitter:description" content="[七天搞定nodejs] (http://nqdeng.github.io/7-days-nodejs/#3.1)-- 笔记模块
+module通过module对象可以访问到当前模块的一些相关信息，但最多的用途是替换当前模块的导出对象。例如模块导出对象默认是一个普通对象，如果想改成一个函数的话，可以使用以下方式。123module.exports = function () &amp;#123;    co">
   
     <link rel="alternative" href="/atom.xml" title="千真教主的主页" type="application/atom+xml">
   
@@ -205,8 +202,7 @@ module通过module对象可以访问到当前模块的一些相关信息，但�
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="七天搞定nodejs-http-nqdeng-github-io-7-days-nodejs-3-1-笔记"><a href="#七天搞定nodejs-http-nqdeng-github-io-7-days-nodejs-3-1-笔记" class="headerlink" title="[七天搞定nodejs] (http://nqdeng.github.io/7-days-nodejs/#3.1)-- 笔记"></a>[七天搞定nodejs] (<a href="http://nqdeng.github.io/7-days-nodejs/#3.1)--" target="_blank" rel="external">http://nqdeng.github.io/7-days-nodejs/#3.1)--</a> 笔记</h1><p>##模块</p>
-<blockquote>
+        <h1 id="七天搞定nodejs-http-nqdeng-github-io-7-days-nodejs-3-1-笔记"><a href="#七天搞定nodejs-http-nqdeng-github-io-7-days-nodejs-3-1-笔记" class="headerlink" title="[七天搞定nodejs] (http://nqdeng.github.io/7-days-nodejs/#3.1)-- 笔记"></a>[七天搞定nodejs] (<a href="http://nqdeng.github.io/7-days-nodejs/#3.1)--" target="_blank" rel="external">http://nqdeng.github.io/7-days-nodejs/#3.1)--</a> 笔记</h1><h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><blockquote>
 <p>module<br>通过<code>module</code>对象可以访问到当前模块的一些相关信息，但最多的用途是替换当前模块的导出对象。例如模块导出对象默认是一个普通对象，如果想改成一个函数的话，可以使用以下方式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Hello World!'</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
 </blockquote>
 <p>以上代码中，模块默认导出对象被替换为一个函数。</p>
