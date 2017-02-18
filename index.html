@@ -208,17 +208,11 @@
 <blockquote>
 <p><code>tip3</code> 主模块定义<br>通过命令行参数传递给NodeJS以启动程序的模块被称为主模块。主模块负责调度组成整个程序的其它模块完成工作。例如通过以下命令启动程序时，main.js就是主模块。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node main.js</div></pre></td></tr></table></figure></p>
 </blockquote>
-<h2 id="模块路径解析规则"><a href="#模块路径解析规则" class="headerlink" title="模块路径解析规则"></a>模块路径解析规则</h2><ol>
-<li>内置模块</li>
-</ol>
+<h2 id="模块路径解析规则"><a href="#模块路径解析规则" class="headerlink" title="模块路径解析规则"></a>模块路径解析规则</h2><p>1.内置模块</p>
 <p>如果传递给<code>require</code>函数的是NodeJS内置模块名称，不做路径解析，直接返回内部模块的导出对象，例如<code>require(&#39;fs&#39;)</code>。</p>
-<ol>
-<li>node_modules目录</li>
-</ol>
+<p>2.node_modules目录</p>
 <p>NodeJS定义了一个特殊的<code>node_modules</code>目录用于存放模块。例如某个模块的绝对路径是<code>/home/user/hello.js</code>，在该模块中使用<code>require(&#39;foo/bar&#39;)</code>方式加载模块时，则NodeJS依次尝试使用以下路径。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/home/user/node_modules/foo/bar</div><div class="line">/home/node_modules/foo/bar</div><div class="line">/node_modules/foo/bar</div></pre></td></tr></table></figure></p>
-<ol>
-<li>NODE_PATH环境变量</li>
-</ol>
+<p>3.NODE_PATH环境变量</p>
 <p>与PATH环境变量类似，NodeJS允许通过NODE_PATH环境变量来指定额外的模块搜索路径。NODE_PATH环境变量中包含一到多个目录路径，路径之间在Linux下使用<code>:</code>分隔，在Windows下使用<code>;</code>分隔。例如定义了以下NODE_PATH环境变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NODE_PATH=/home/user/lib:/home/lib</div></pre></td></tr></table></figure></p>
 <p>当使用require(‘foo/bar’)的方式加载模块时，则NodeJS依次尝试以下路径。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/home/user/lib/foo/bar</div><div class="line">/home/lib/foo/bar</div></pre></td></tr></table></figure></p>
 <h2 id="包（package）"><a href="#包（package）" class="headerlink" title="包（package）"></a>包（package）</h2><p>在组成一个包的所有子模块中，需要有一个入口模块，入口模块的导出对象被作为包的导出对象。例如有以下目录结构。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- /home/user/lib/</div><div class="line">    - cat/</div><div class="line">        head.js</div><div class="line">        body.js</div><div class="line">        main.js</div><div class="line">```        </div><div class="line"></div><div class="line">其中`cat`目录定义了一个包，其中包含了3个子模块。`main.js`作为入口模块，其内容如下：</div></pre></td></tr></table></figure></p>
@@ -241,8 +235,32 @@
 </ul>
 </li>
 </ul>
-<p>{<br>    “name”: “cat”,<br>    “main”: “./lib/main.js”<br>}<br>```</p>
-<p>如此一来，就同样可以使用require(‘/home/user/lib/cat’)的方式加载模块。NodeJS会根据包目录下的package.json找到入口模块所在位置。</p>
+<p>{<br>    “name”: “cat”,<br>    “main”: “./lib/main.js”<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">如此一来，就同样可以使用require(&apos;/home/user/lib/cat&apos;)的方式加载模块。NodeJS会根据包目录下的package.json找到入口模块所在位置。</div><div class="line"></div><div class="line">## 命令行程序 -- 工程目录</div></pre></td></tr></table></figure></p>
+<ul>
+<li>/home/user/workspace/node-echo/   # 工程目录<ul>
+<li>bin/                          # 存放命令行相关代码<br>  node-echo</li>
+</ul>
+<ul>
+<li>doc/                          # 存放文档</li>
+</ul>
+<ul>
+<li>lib/                          # 存放API相关代码<br>  echo.js</li>
+<li>node_modules/                 # 存放三方包<ul>
+<li>argv/</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>tests/                        # 存放测试用例<br>package.json                    # 元数据文件<br>README.md                       # 说明文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">其中部分文件内容如下：</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>/<em> bin/node-echo </em>/<br>var argv = require(‘argv’),<br>    echo = require(‘../lib/echo’);<br>console.log(echo(argv.join(‘ ‘)));</p>
+<p>/<em> lib/echo.js </em>/<br>module.exports = function (message) {<br>    return message;<br>};</p>
+<p>/<em> package.json </em>/<br>{<br>    “name”: “node-echo”,<br>    “main”: “./lib/echo.js”<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">以上例子中分类存放了不同类型的文件，并通过`node_moudles`目录直接使用三方包名加载模块。此外，定义了`package.json`之后，`node-echo`目录也可被当作一个包来使用。</div><div class="line"></div><div class="line">## 发布代码</div><div class="line"></div><div class="line">第一次使用NPM发布代码前需要注册一个账号。终端下运行`npm adduser`，之后按照提示做即可。账号搞定后，接着我们需要编辑`package.json`文件，加入NPM必需的字段。接着上边`node-echo`的例子，`package.json`里必要的字段如下。</div></pre></td></tr></table></figure></p>
+<p>{<br>    “name”: “node-echo”,           # 包名，在NPM服务器上须要保持唯一<br>    “version”: “1.0.0”,            # 当前版本号<br>    “dependencies”: {              # 三方包依赖，需要指定包名和版本号<br>        “argv”: “0.0.2”<br>      },<br>    “main”: “./lib/echo.js”,       # 入口模块位置<br>    “bin” : {<br>        “node-echo”: “./bin/node-echo”      # 命令行程序名和主模块位置<br>    }<br>}<br>```</p>
+<p>之后，我们就可以在<code>package.json</code>所在目录下运行<code>npm publish</code>发布代码了。</p>
 
       
     </div>
@@ -373,7 +391,7 @@
 <h2 id="关于收费"><a href="#关于收费" class="headerlink" title="关于收费"></a>关于收费</h2><p><strong>马克飞象</strong>为新用户提供 10 天的试用期，试用期过后需要<a href="maxiang.info/vip.html">续费</a>才能继续使用。未购买或者未及时续费，将不能同步新的笔记。之前保存过的笔记依然可以编辑。</p>
 <h2 id="反馈与建议"><a href="#反馈与建议" class="headerlink" title="反馈与建议"></a>反馈与建议</h2><ul>
 <li>微博：<a href="http://weibo.com/u/2788354117" target="_blank" rel="external">@马克飞象</a>，<a href="http://weibo.com/ggock" title="开发者个人账号" target="_blank" rel="external">@GGock</a></li>
-<li>邮箱：<a href="&#109;&#97;&#105;&#108;&#x74;&#111;&#x3a;&#104;&#x75;&#115;&#116;&#103;&#111;&#x63;&#x6b;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#104;&#x75;&#115;&#116;&#103;&#111;&#x63;&#x6b;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;</a></li>
+<li>邮箱：<a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#104;&#117;&#115;&#x74;&#x67;&#111;&#99;&#107;&#64;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;">&#104;&#117;&#115;&#x74;&#x67;&#111;&#99;&#107;&#64;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a></li>
 </ul>
 <hr>
 <p>感谢阅读这份帮助文档。请点击右上角，绑定印象笔记账号，开启全新的记录与分享体验吧。</p>
